@@ -359,7 +359,7 @@ function App() {
 
       {/* hero-section */}
       <section id="home" className="hero-section" ref={homeRef}>
-        <h2 className="hero-title">Welcome to AWS Builders Club</h2>
+        <h2 className="hero-title">Welcome to Ijed's Club</h2>
         <p className="hero-desc">
           Be part of a dynamic community at Mapúa MCM where students learn, collaborate, and innovate with AWS. Gain hands-on experience, build real projects, and jumpstart your cloud career with peers who share the same passion.
         </p>
@@ -1230,7 +1230,6 @@ function App() {
           <p>&copy; 2025 AWS Builders Club</p>
           
       </footer>
-
 
       {/* faq-modal */}
       {showFAQModal && (
