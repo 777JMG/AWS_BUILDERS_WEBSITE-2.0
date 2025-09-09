@@ -359,9 +359,9 @@ function App() {
 
       {/* hero-section */}
       <section id="home" className="hero-section" ref={homeRef}>
-        <h2 className="hero-title">Welcome to Ijed's Club</h2>
+        <h2 className="hero-title">Welcome to Ijed's Angel's Club</h2>
         <p className="hero-desc">
-          Be part of a dynamic community at Mapúa MCM where students learn, collaborate, and innovate with AWS. Gain hands-on experience, build real projects, and jumpstart your cloud career with peers who share the same passion.
+          Be part of a dynamic community at Mapúa MCM where students learn, collaborate, and innovate with AWS. Gain hands-on experience, build real projects, and jumpstart your cloud career with peers who share the same passion. With our President Ijed Luzele Yañez leading the way, the AWS Builders Club is your gateway to mastering cloud technology and making a real impact.
         </p>
         <div className="hero-buttons">
           <a
