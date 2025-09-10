@@ -884,7 +884,7 @@ function App() {
       )}
 
       {/* Meet the Team Modal */}
-      {showTeamModal && (
+     /* {showTeamModal && (
         <div className="modal-overlay" onClick={() => setShowTeamModal(false)}>
           <div className="modal-content" style={{ maxWidth: '900px', width: '100%' }} onClick={e => e.stopPropagation()}>
             <div className="modal-header">
@@ -975,7 +975,7 @@ function App() {
             </div>
           </div>
         </div>
-      )}
+      )} */
 
       {/* events */}
       {showEventsModal && (
