@@ -12,13 +12,15 @@ function App() {
   const [showTeamModal, setShowTeamModal] = React.useState(false);
   const [showEventsModal, setShowEventsModal] = React.useState(false);
   const [showFAQModal, setShowFAQModal] = React.useState(false);
+  const [showOfficersModal, setShowOfficersModal] = React.useState(false);
+  const [showTeamOrgModal, setShowTeamOrgModal] = React.useState(false);
 
   // modal states
   const [teamModalPage, setTeamModalPage] = React.useState('main'); // 'main' or 'officers'
   const [activeTeamSection, setActiveTeamSection] = React.useState('lead');
 
   // project teams
-  const teamSections = [
+  /*const teamSections = [
     {
       key: 'lead',
       label: 'Project Lead',
@@ -335,17 +337,28 @@ function App() {
           >
             Join Now
           </a>
-            <a
-              href="#orgchart"
-              className="navbar-dropdown-link"
-              onClick={e => {
-                e.preventDefault();
-                if (orgChartRef.current) {
-                  orgChartRef.current.scrollIntoView({ behavior: 'smooth' });
-                }
-               }} >
-                Meet The Officers
-               </a>
+              <a
+                href="#officers"
+                className="navbar-dropdown-link"
+                onClick={e => {
+                  e.preventDefault();
+                  setShowOfficersModal(true);
+                  document.getElementById('dropdown-getstarted-main').classList.remove('show');
+                }}
+              >
+                Meet the Officers
+              </a>
+              <a
+                href="#team"
+                className="navbar-dropdown-link"
+                onClick={e => {
+                  e.preventDefault();
+                  setShowTeamOrgModal(true);
+                  document.getElementById('dropdown-getstarted-main').classList.remove('show');
+                }}
+              >
+                Meet the Team
+              </a>
               <a
                 href="#events"
                 className="navbar-dropdown-link"
@@ -746,55 +759,24 @@ function App() {
 
 
       {/* org-chart*/}
-      <section id="orgchart" className="org-chart-section" ref={orgChartRef}>
-        <h2 className="section-title">Our Organization</h2>
-        
-        <div className="chart-container">
-          {/* instructor */}
-          <div className="instructor-level">
-            <div className="instructor-card">
-              <div className="instructor-name">Clyde Chester R. Balaman</div>
-              <div className="instructor-role">Club Moderator</div>
+      {showOfficersModal && (
+        <div className="modal-overlay" onClick={() => setShowOfficersModal(false)}>
+          <div className="modal-content image-modal" onClick={e => e.stopPropagation()}>
+            <div className="modal-header">
+              <h2 className="modal-title">Meet the Officers</h2>
+              <button className="modal-close" onClick={() => setShowOfficersModal(false)}>×</button>
             </div>
-          </div>
-
-          {/* connecting-lines */}
-          <div className="connection-line vertical-main"></div>
-          <div className="connection-line horizontal-officers"></div>
-
-          {/* officers */}
-          <div className="officers-level" style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: '2rem',
-            width: '100%',
-            maxWidth: '1200px',
-            position: 'relative',
-            justifyContent: 'center'
-          }}>
-            <div className="officer-card">
-              <div className="officer-name">Ijed Luzele Yañez</div>
-              <div className="officer-role">President</div>
-            </div>
-            <div className="officer-card">
-              <div className="officer-name">James Nathaniel Tan</div>
-              <div className="officer-role">Vice President (External)</div>
-            </div>
-            <div className="officer-card">
-              <div className="officer-name">Josh Marco Goc-Ong</div>
-              <div className="officer-role">Vice President (Internal)</div>
-            </div>
-            <div className="officer-card">
-              <div className="officer-name">Shanica Diaz</div>
-              <div className="officer-role">Secretary</div>
-            </div>
-            <div className="officer-card">
-              <div className="officer-name">Karyll Grace Bontuyan</div>
-              <div className="officer-role">Treasurer</div>
+            
+            <div className="image-container">
+              <img 
+                src={require("./images/Org_Chart.png")}
+                alt="AWS Builders Club Officers Organizational Chart"
+                className="org-chart-image"
+              />
             </div>
           </div>
         </div>
-      </section>
+      )}
 
       {/* highlights-sect */}
       <section className="highlights-section">
@@ -883,99 +865,25 @@ function App() {
         </div>
       )}
 
-      {/* Meet the Team Modal */}
-     /* {showTeamModal && (
-        <div className="modal-overlay" onClick={() => setShowTeamModal(false)}>
-          <div className="modal-content" style={{ maxWidth: '900px', width: '100%' }} onClick={e => e.stopPropagation()}>
+      {/* meet the team */}
+      {showTeamOrgModal && (
+        <div className="modal-overlay" onClick={() => setShowTeamOrgModal(false)}>
+          <div className="modal-content image-modal" onClick={e => e.stopPropagation()}>
             <div className="modal-header">
               <h2 className="modal-title">Meet the Team</h2>
-              <button className="modal-close" onClick={() => setShowTeamModal(false)}>×</button>
+              <button className="modal-close" onClick={() => setShowTeamOrgModal(false)}>×</button>
             </div>
             
-            <div style={{ display: 'flex', gap: '32px', padding: '24px 0' }}>
-              {/* Sidebar Navigation */}
-              <div style={{
-                background: 'var(--primary-blue)',
-                borderRadius: '16px',
-                padding: '24px 0',
-                minWidth: '320px',
-                color: '#fff',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '8px'
-              }}>
-                {teamSections.map(section => (
-                  <button
-                    key={section.key}
-                    style={{
-                      background: activeTeamSection === section.key ? '#0498eeff' : 'none',
-                      color: '#fff',
-                      border: 'none',
-                      borderRadius: '8px',
-                      padding: '12px 24px',
-                      fontWeight: activeTeamSection === section.key ? 'bold' : 'normal',
-                      margin: '0 24px 4px 24px',
-                      cursor: 'pointer',
-                      textAlign: 'left',
-                      opacity: activeTeamSection === section.key ? 1 : 0.85,
-                      transition: 'background 0.2s'
-                    }}
-                    onClick={() => setActiveTeamSection(section.key)}
-                  >
-                    {section.label}
-                  </button>
-                ))}
-              </div>
-              
-              {/* Main Content */}
-              <div style={{ flex: 1 }}>
-                <h2 style={{ color: 'var(--primary-blue)', marginBottom: '8px' }}>
-                  {teamSections.find(s => s.key === activeTeamSection).content.title}
-                </h2>
-                
-                {activeTeamSection === 'leaders'
-                  ? teamSections.find(s => s.key === activeTeamSection).content.leaders.map((leader, idx) => (
-                      <div key={idx} style={{ fontWeight: 'bold', color: '#e53935', marginBottom: '8px' }}>
-                        {leader.name}
-                        <div style={{ marginBottom: '16px', fontWeight: 'normal', color: '#222' }}>
-                          • {leader.role}
-                        </div>
-                      </div>
-                    ))
-                  : (
-                    <>
-                      <div style={{ fontWeight: 'bold', color: '#e53935', marginBottom: '8px' }}>
-                        {teamSections.find(s => s.key === activeTeamSection).content.leader}
-                      </div>
-                      <div style={{ marginBottom: '16px' }}>
-                        • {teamSections.find(s => s.key === activeTeamSection).content.leaderRole}
-                      </div>
-                    </>
-                  )
-                }
-                
-                {activeTeamSection !== 'lead' && activeTeamSection !== 'leaders' &&
-                  teamSections.find(s => s.key === activeTeamSection).content.members.length > 0 && (
-                    <>
-                      <div style={{ fontWeight: 'bold', marginBottom: '8px' }}>MEMBERS</div>
-                      <ul style={{ marginBottom: '24px', paddingLeft: '20px' }}>
-                        {teamSections.find(s => s.key === activeTeamSection).content.members.map((member, idx) => (
-                          <li key={idx}>
-                            {member.name}
-                            <span style={{ color: '#888', fontStyle: 'italic', marginLeft: '8px' }}>
-                              {member.role}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                    </>
-                  )
-                }
-              </div>
+            <div className="image-container">
+              <img 
+                src={require("./images/Roles_Charr.png")}
+                alt="AWS Builders Club Team Organizational Chart"
+                className="org-chart-image"
+              />
             </div>
           </div>
         </div>
-      )} */
+      )}
 
       {/* events */}
       {showEventsModal && (
