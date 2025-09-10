@@ -346,17 +346,6 @@ function App() {
                }} >
                 Meet The Officers
                </a>
-              /* <a
-                href="#teams"
-                className="navbar-dropdown-link"
-                onClick={e => {
-                  e.preventDefault();
-                  setShowTeamModal(true);
-                  document.getElementById('dropdown-getstarted-main').classList.remove('show');
-                }}
-              > 
-                Meet The Team
-              </a> */
               <a
                 href="#events"
                 className="navbar-dropdown-link"
