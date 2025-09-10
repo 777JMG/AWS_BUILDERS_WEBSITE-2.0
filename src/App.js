@@ -346,7 +346,7 @@ function App() {
                }} >
                 Meet The Officers
                </a>
-              <a
+              /* <a
                 href="#teams"
                 className="navbar-dropdown-link"
                 onClick={e => {
@@ -354,9 +354,9 @@ function App() {
                   setShowTeamModal(true);
                   document.getElementById('dropdown-getstarted-main').classList.remove('show');
                 }}
-              >
+              > 
                 Meet The Team
-              </a>
+              </a> */
               <a
                 href="#events"
                 className="navbar-dropdown-link"
