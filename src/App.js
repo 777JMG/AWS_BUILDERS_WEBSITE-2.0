@@ -260,12 +260,20 @@ function App() {
     <div className="app-bg app-text app-font min-height flex-col">
       {/* main-navigation */}
       <nav className="navbar">
-        <img
-          src={require("./images/aws-builder-logo.png")}
-          alt="AWS Builders Club Logo"
-          className="navbar-logo"
-          style={{ height: '48px' }}
-        />
+        {/* Logo and Name Section */}
+        <div className="navbar-brand">
+          <img
+            src={require("./images/aws-builder-logo.png")}
+            alt="AWS Builders Club Logo"
+            className="navbar-logo"
+            style={{ height: '48px', marginRight: '12px' }}
+          />
+          <div className="navbar-title-container">
+            <h1 className="navbar-title">AWS Builders Club</h1>
+          </div>
+        </div>
+        
+        {/* Navigation Links */}
         <ul className="navbar-links">
           <li>
             <a href="#home" className="navbar-link" onClick={handleAboutClick2}>
@@ -287,21 +295,21 @@ function App() {
               Goals
             </a>
           </li>
-              <li>
-              <a
-                href="#testimonies"
-                className="navbar-link"
-                onClick={e => {
-                  e.preventDefault();
-                  if (testimony.current) {
-                    testimony.current.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }}
-              >
-                Testimonies
-              </a>
-            </li>
-          {/* dropdown */}
+          <li>
+            <a
+              href="#testimonies"
+              className="navbar-link"
+              onClick={e => {
+                e.preventDefault();
+                if (testimony.current) {
+                  testimony.current.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+            >
+              Testimonies
+            </a>
+          </li>
+          {/* Dropdown */}
           <li className="navbar-dropdown-parent">
             <button
               className="navbar-link navbar-dropdown-toggle"
@@ -319,6 +327,25 @@ function App() {
               className="navbar-dropdown"
               onMouseLeave={() => document.getElementById('dropdown-getstarted-main').classList.remove('show')}
             >
+            <a
+            href="https://discord.gg/UFGUPutKSR"
+            className="navbar-dropdown-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Join Now
+          </a>
+            <a
+              href="#orgchart"
+              className="navbar-dropdown-link"
+              onClick={e => {
+                e.preventDefault();
+                if (orgChartRef.current) {
+                  orgChartRef.current.scrollIntoView({ behavior: 'smooth' });
+                }
+               }} >
+                Meet The Officers
+               </a>
               <a
                 href="#teams"
                 className="navbar-dropdown-link"
@@ -328,7 +355,7 @@ function App() {
                   document.getElementById('dropdown-getstarted-main').classList.remove('show');
                 }}
               >
-                Meet the team
+                Meet The Team
               </a>
               <a
                 href="#events"
@@ -359,9 +386,9 @@ function App() {
 
       {/* hero-section */}
       <section id="home" className="hero-section" ref={homeRef}>
-        <h2 className="hero-title">Welcome to Ijed's Angel's Club</h2>
+        <h2 className="hero-title">Welcome to AWS Builders Club</h2>
         <p className="hero-desc">
-          Be part of a dynamic community at Mapúa MCM where students learn, collaborate, and innovate with AWS. Gain hands-on experience, build real projects, and jumpstart your cloud career with peers who share the same passion. With our President Ijed Luzele Yañez leading the way, the AWS Builders Club is your gateway to mastering cloud technology and making a real impact.
+          Be part of a dynamic community at Mapúa MCM where students learn, collaborate, and innovate with AWS. Gain hands-on experience, build real projects, and jumpstart your cloud career with peers who share the same passion.
         </p>
         <div className="hero-buttons">
           <a
@@ -396,7 +423,7 @@ function App() {
               style={{ minWidth: '140px', padding: '12px 24px', fontSize: '1rem' }}
               onClick={openAboutModal}
             >
-              Read More
+              Vision & Mission
             </button>
           </div>
         </div>
@@ -404,28 +431,38 @@ function App() {
 
       {/* readmore-modal */}
       {showAboutModal && (
-        <div className="modal-overlay" onClick={closeAboutModal}>
+        <div className="modal-overlay vision-mission-modal" onClick={closeAboutModal}>
           <div className="modal-content" onClick={e => e.stopPropagation()}>
             <div className="modal-header">
               <h2 className="modal-title">About Us</h2>
               <button className="modal-close" onClick={closeAboutModal}>×</button>
             </div>
+            
             <div style={{ padding: '16px 0' }}>
-              <div style={{ marginBottom: '32px' }}>
-                <h3 className="highlights-title" style={{ marginBottom: '16px' }}>
-                  Vision
-                </h3>
-                <p className="highlight-card-desc">
-                  To build a strong presence in the Mapúa MCM community by showcasing our AWS projects and inspiring students to explore the power of cloud technologies.
-                </p>
+              {/* Vision Section */}
+              <div className="vision-mission-section vision-section">
+                <div className="vision-mission-header">
+                  <div className="vision-mission-icon vision-icon">V</div>
+                  <h3 className="vision-mission-title vision-title">Vision</h3>
+                </div>
+                <div className="vision-mission-content vision-content">
+                  <p className="vision-mission-text">
+                    To build a strong presence in the Mapúa MCM community by showcasing our AWS projects and inspiring students to explore the power of cloud technologies.
+                  </p>
+                </div>
               </div>
-              <div>
-                <h3 className="highlights-title" style={{ marginBottom: '16px' }}>
-                  Mission
-                </h3>
-                <p className="highlight-card-desc">
-                  To create a community of innovative, skilled students who are empowered to harness AWS projects and inspire students to explore the power of the cloud.
-                </p>
+              
+              {/* Mission Section */}
+              <div className="vision-mission-section mission-section">
+                <div className="vision-mission-header">
+                  <div className="vision-mission-icon mission-icon">M</div>
+                  <h3 className="vision-mission-title mission-title">Mission</h3>
+                </div>
+                <div className="vision-mission-content mission-content">
+                  <p className="vision-mission-text">
+                    To create a community of innovative, skilled students who are empowered to harness AWS projects and inspire students to explore the power of the cloud.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -433,64 +470,71 @@ function App() {
       )}
 
       {/* goals-sect */}
-      <section id="goals" className="about-section">
-        <h2 className="hero-title" style={{ marginBottom: '32px' }}>
-          Our Goals
-        </h2>
-        <div className="about-content" style={{ maxWidth: '800px', margin: '0 auto' }}>
-          <div className="about-block" style={{ marginBottom: '32px', width: '100%' }}>
-            <h3 className="highlights-title" style={{ marginBottom: '16px' }}>
-              Hands-on Training and Skill Development
-            </h3>
-            <p className="highlight-card-desc">
-              Develop hands-on cloud skills by participating in interactive AWS workshops, lab sessions, and community-led events.
-            </p>
+      <section id="goals" className="goals-section">
+        <div className="goals-content">
+          <h2 className="goals-title">Our Goals</h2>
+          <div className="goals-grid">
+            <div className="goal-card blue">
+              <div className="goal-number blue">1</div>
+              <h3 className="goal-title blue">
+                Hands-on Training and Skill Development
+              </h3>
+              <p className="goal-description">
+                Develop hands-on cloud skills by participating in interactive AWS workshops, lab sessions, and community-led events.
+              </p>
+            </div>
+            <div className="goal-card orange">
+              <div className="goal-number orange">2</div>
+              <h3 className="goal-title orange">
+                Collaborative Projects And their Repositories
+              </h3>
+              <p className="goal-description">
+                Build a strong community of learners by collaborating on real-world AWS cloud projects that foster teamwork, shared learning, and collective problem-solving.
+              </p>
+            </div>
+            <div className="goal-card blue">
+              <div className="goal-number blue">3</div>
+              <h3 className="goal-title blue">
+                Certification Support
+              </h3>
+              <p className="goal-description">
+                Equip AWS Builders Club members with the learning tools and mentorship needed to earn AWS certifications and boost their cloud careers.
+              </p>
+            </div>
+            <div className="goal-card orange">
+              <div className="goal-number orange">4</div>
+              <h3 className="goal-title orange">
+                Industry Alignment
+              </h3>
+              <p className="goal-description">
+                Keep pace with emerging cloud technologies and industry-relevant skills sought by today's top employers.
+              </p>
+            </div>
+            <div className="goal-card blue">
+              <div className="goal-number blue">5</div>
+              <h3 className="goal-title blue">
+                Campus Impact
+              </h3>
+              <p className="goal-description">
+                Help promote cloud-related activities and solutions in different departments around the campus.
+              </p>
+            </div>
+            <div className="goal-card orange">
+              <div className="goal-number orange">6</div>
+              <h3 className="goal-title orange">
+                Fundraising
+              </h3>
+              <p className="goal-description">
+                Empower club growth by launching fundraising activities such as selling custom merchandise or organizing events.
+              </p>
+            </div>
           </div>
-          <div className="about-block" style={{ marginBottom: '32px', width: '100%' }}>
-            <h3 className="highlights-title" style={{ marginBottom: '16px' }}>
-              Collaborative Projects And their Repositories
-            </h3>
-            <p className="highlight-card-desc">
-              Build a strong community of learners by collaborating on real-world AWS cloud projects that foster teamwork, shared learning, and collective problem-solving.
-            </p>
-          </div>
-          <div className="about-block" style={{ marginBottom: '32px', width: '100%' }}>
-            <h3 className="highlights-title" style={{ marginBottom: '16px' }}>
-              Certification Support
-            </h3>
-            <p className="highlight-card-desc">
-              Equip AWS Builders Club members with the learning tools and mentorship needed to earn AWS certifications and boost their cloud careers.
-            </p>
-          </div>
-          <div className="about-block" style={{ marginBottom: '32px', width: '100%' }}>
-            <h3 className="highlights-title" style={{ marginBottom: '16px' }}>
-              Industry Alignment
-            </h3>
-            <p className="highlight-card-desc">
-              Keep pace with emerging cloud technologies and industry-relevant skills sought by today’s top employers.
-            </p>
-          </div>
-          <div className="about-block" style={{ marginBottom: '32px', width: '100%' }}>
-            <h3 className="highlights-title" style={{ marginBottom: '16px' }}>
-              Campus Impact
-            </h3>
-            <p className="highlight-card-desc">
-              Help promote cloud-related activities and solutions in different departments around the campus.
-            </p>
-          </div>
-          <div className="about-block" style={{ marginBottom: '32px', width: '100%' }}>
-            <h3 className="highlights-title" style={{ marginBottom: '16px' }}>
-              Fundraising
-            </h3>
-            <p className="highlight-card-desc">
-              Empower club growth by launching fundraising activities such as selling custom merchandise or organizing events.
-            </p>
-          </div>
-          <div className="about-block" style={{ marginBottom: '0', width: '100%' }}>
-            <h3 className="highlights-title" style={{ marginBottom: '16px' }}>
+          <div className="goal-card-featured">
+            <div className="goal-number-featured">7</div>
+            <h3 className="goal-title-featured">
               Mentorship and Peer Learning
             </h3>
-            <p className="highlight-card-desc">
+            <p className="goal-description-featured">
               Foster a culture of knowledge sharing by pairing experienced members with beginners.
             </p>
           </div>
@@ -721,7 +765,7 @@ function App() {
           <div className="instructor-level">
             <div className="instructor-card">
               <div className="instructor-name">Clyde Chester R. Balaman</div>
-              <div className="instructor-role">Instructor</div>
+              <div className="instructor-role">Club Moderator</div>
             </div>
           </div>
 
@@ -760,83 +804,9 @@ function App() {
               <div className="officer-role">Treasurer</div>
             </div>
           </div>
-
-          {/* members */}
-          <div className="members-level">
-            <div className="members-title">Club Members</div>
-            <div className="members-grid">
-              <div className="member-card">
-                <div className="member-name">Renzi Albastro</div>
-                <div className="member-role">Lead Moderator</div>
-              </div>
-              <div className="member-card">
-                <div className="member-name">Beau Renfro Crieta</div>
-                <div className="member-role">Event Organizer</div>
-              </div>
-              <div className="member-card">
-                <div className="member-name">Zidane Pasaje</div>
-                <div className="member-role">Flex Assistant</div>
-              </div>
-              <div className="member-card">
-                <div className="member-name">Lance Ranielle Andres</div>
-                <div className="member-role">Developer</div>
-              </div>
-              <div className="member-card">
-                <div className="member-name">Kurt Arnyle Gadingan</div>
-                <div className="member-role">Moderator</div>
-              </div>
-              <div className="member-card">
-                <div className="member-name">Gerald Andre Nagliba</div>
-                <div className="member-role">Moderator</div>
-              </div>
-              <div className="member-card">
-                <div className="member-name">Desiree Joy Bigot</div>
-                <div className="member-role">Content/Resource Center</div>
-              </div>
-              <div className="member-card">
-                <div className="member-name">Chass Clayton Estomo</div>
-                <div className="member-role">Developer</div>
-              </div>
-              <div className="member-card">
-                <div className="member-name">Hezron Nallos</div>
-                <div className="member-role">QA Lead</div>
-              </div>
-              <div className="member-card">
-                <div className="member-name">Trixie Nin Canete</div>
-                <div className="member-role">Graphic Designer</div>
-              </div>
-              <div className="member-card">
-                <div className="member-name">Abe Jaylil Javier</div>
-                <div className="member-role">Developer</div>
-              </div>
-              <div className="member-card">
-                <div className="member-name">Arabella L. Ortega</div>
-                <div className="member-role">AWS Developer</div>
-              </div>
-              <div className="member-card">
-                <div className="member-name">Jamril Maclain Parreño</div>
-                <div className="member-role">Content/Resource Center</div>
-              </div>
-              <div className="member-card">
-                <div className="member-name">Joshua Marc Masellones</div>
-                <div className="member-role">Lead Front-End Developer</div>
-              </div>
-              <div className="member-card">
-                <div className="member-name">James Virgil Co</div>
-                <div className="member-role">QA Tester</div>
-              </div>
-              <div className="member-card">
-                <div className="member-name">John Bernard Mendoza</div>
-                <div className="member-role">QA Tester</div>
-              </div>
-              <div className="member-card">
-                <div className="member-name">Elykah Cascaro</div>
-                <div className="member-role">Content Writer</div>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
+
       {/* highlights-sect */}
       <section className="highlights-section">
         <h3 className="highlights-title">Get Involved / Join Us</h3>
@@ -1208,14 +1178,6 @@ function App() {
               Instagram
           </a>
           <a
-            href="https://linkedin.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{color: "#4c95e9ff", textDecoration: "none"}}
-            >
-              LinkedIn
-          </a>
-          <a
             href="https://facebook.com/"
             target="_blank"
             rel="noopener noreferrer"
@@ -1230,6 +1192,7 @@ function App() {
           <p>&copy; 2025 AWS Builders Club</p>
           
       </footer>
+
 
       {/* faq-modal */}
       {showFAQModal && (
