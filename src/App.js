@@ -1067,7 +1067,7 @@ function App() {
               Discord
           </a>
           <a
-            href="https://instagram.com/"
+            href="https://www.instagram.com/awsbuildersclub/"
             target="_blank"
             rel="noopener noreferrer"
             style={{color: "#fa02d9ff", textDecoration: "none"}}
@@ -1075,7 +1075,7 @@ function App() {
               Instagram
           </a>
           <a
-            href="https://facebook.com/"
+            href="https://facebook.com/awsbc"
             target="_blank"
             rel="noopener noreferrer"
             style={{color: "#1344e2ff", textDecoration: "none"}}
